@@ -1,7 +1,7 @@
 frogg_flutter
 
 A new Flutter project. Created with love, pain and a lot of AI. 
-An AI Personal Trainer, Calorie and Workout Tracker. Looking cool, helping people achieving goals and life a healthy lifestyle. Not for the money, but for the love of the people.
+An AI Personal Trainer, Calorie and Workout Tracker. Looking cool, helping people achieving goals and living a healthy lifestyle. Not for the money, but for the love of the people.
 
 ## Getting Started
 
