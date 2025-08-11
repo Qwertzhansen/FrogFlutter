@@ -1,17 +1,17 @@
 
 part of 'auth_bloc.dart';
 
-abstract class AuthState extends Equatable {
-  const AuthState();
+abstract class AppAuthState extends Equatable {
+  const AppAuthState();
 
   @override
   List<Object> get props => [];
 }
 
-class AuthInitial extends AuthState {}
+class AuthInitial extends AppAuthState {}
 
-class AuthAuthenticated extends AuthState {
-  final Session session;
+class AuthAuthenticated extends AppAuthState {
+  final supabase.Session session;
 
   const AuthAuthenticated(this.session);
 
@@ -19,4 +19,4 @@ class AuthAuthenticated extends AuthState {
   List<Object> get props => [session];
 }
 
-class AuthUnauthenticated extends AuthState {}
+class AuthUnauthenticated extends AppAuthState {}

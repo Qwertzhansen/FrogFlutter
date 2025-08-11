@@ -12,10 +12,7 @@ class ProfileRepository {
         .eq('id', userId)
         .single();
 
-    if (response != null) {
-      return Profile.fromMap(response);
-    }
-    return null;
+    return Profile.fromMap(response);
   }
 
   Future<void> updateProfile({

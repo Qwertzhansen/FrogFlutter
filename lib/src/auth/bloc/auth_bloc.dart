@@ -3,16 +3,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 import '../auth_repository.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AppAuthState> {
   final AuthRepository _authRepository;
-  late StreamSubscription<AuthState> _authStateSubscription;
+  late StreamSubscription<supabase.AuthState> _authStateSubscription;
 
   AuthBloc({required AuthRepository authRepository})
       : _authRepository = authRepository,
@@ -21,9 +21,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthSignedOut>(_onAuthSignedOut);
 
     _authStateSubscription = _authRepository.authStateChanges.listen((authState) {
-      if (authState.event == AuthChangeEvent.signedIn) {
+      if (authState.event == supabase.AuthChangeEvent.signedIn) {
         add(AuthSessionRefreshed());
-      } else if (authState.event == AuthChangeEvent.signedOut) {
+      } else if (authState.event == supabase.AuthChangeEvent.signedOut) {
         add(AuthSignedOut());
       }
     });
@@ -31,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onAuthSessionRefreshed(
     AuthSessionRefreshed event,
-    Emitter<AuthState> emit,
+    Emitter<AppAuthState> emit,
   ) async {
     final session = _authRepository.currentSession;
     if (session != null) {
@@ -43,7 +43,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onAuthSignedOut(
     AuthSignedOut event,
-    Emitter<AuthState> emit,
+    Emitter<AppAuthState> emit,
   ) async {
     emit(AuthUnauthenticated());
   }

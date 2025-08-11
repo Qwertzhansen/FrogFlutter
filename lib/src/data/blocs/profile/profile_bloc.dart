@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'package:frogg_flutter/src/data/models/profile.dart';
 import 'package:frogg_flutter/src/data/repositories/profile_repository.dart';
